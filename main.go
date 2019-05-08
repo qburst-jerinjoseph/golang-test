@@ -14,5 +14,5 @@ func main() {
 	first()
 }
 func first() error {
-	return errors.New("error")
+	return 			errors.New("error")
 }
