@@ -1,1 +1,1 @@
-# golang-test
+Biolerplate for massively scalable applications

@@ -1,0 +1,39 @@
+version: '3.5'
+services:
+  db:
+    build: 
+      context: ./internal/data/config
+      args:
+        - POSTGRES_USER=lazygo
+        - POSTGRES_PASSWORD=lazygo
+        - POSTGRES_DB=lazygo_dev
+    volumes:
+      - ./:/root/
+    ports:
+      - "5432:5432"  
+  lazy-go:
+    build:
+      context: .
+    volumes:
+      - ./:/go/src/lazy-go/
+    command: ["./wait-for-it.sh", "db:5432", "--", "rerun", "-a", "serve", "-i", "vendor"]
+    depends_on:
+      - db
+    ports:
+      - ${PORT:-3001}:${PORT:-3001}
+    environment:
+      - LAZY-GO_ENV
+      - LAZY-GO_PORT
+      - LAZY-GO_ROLE=master
+      - LAZY-GO_LOG_LEVEL
+      - DB_USER=lazygo
+      - DB_PASSWORD=lazygo
+      - DB_NAME=lazygo_dev
+      - DB_HOST=db
+      - DB_PORT=5432
+  pgweb:
+    image: sosedoff/pgweb
+    ports:
+      - "8081:8081"
+    environment:
+      - DATABASE_URL=postgres://lazygo:lazygo@db:5432/lazygo_dev?sslmode=disable
