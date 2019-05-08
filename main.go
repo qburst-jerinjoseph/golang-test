@@ -8,6 +8,6 @@ import (
 func main() {
 
 	idStr := "1"
-	id, _ := strconv.Atoi(idStr)
+	id, err := strconv.Atoi(idStr)
 	fmt.Println(id)
 }
