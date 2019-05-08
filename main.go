@@ -1,7 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"strconv"
+)
 
 func main() {
-	fmt.Println("hai")
+
+	idStr := "1"
+	id, _ := strconv.Atoi(idStr)
+	fmt.Println(id)
 }
