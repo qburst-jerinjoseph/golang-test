@@ -11,7 +11,8 @@ func main() {
 	idStr := "1"
 	id, _ := strconv.Atoi(idStr)
 	fmt.Println(id)
-	first()
+	err:=first()
+fmt.Println(err)
 }
 func first() error {
 	return 			errors.New("error")
