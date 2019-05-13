@@ -9,7 +9,7 @@ runner:
     cmd: unused $(go list ./... | grep -v /vendor/)
     errorformat:
       - "%f:%l:%c: %m"
-   staticcheck:
+  staticcheck:
     cmd: staticcheck $(go list ./... | grep -v /vendor/)
     errorformat:
-       - "%f:%l:%c: %m"
+      - "%f:%l:%c: %m"
