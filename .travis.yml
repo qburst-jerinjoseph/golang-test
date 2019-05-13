@@ -1,0 +1,15 @@
+sudo: false
+language: go
+
+go:
+- "1.11.x"
+
+install:
+  - go get golang.org/x/lint/golint
+  - go get honnef.co/go/tools/cmd/unused
+  - go get honnef.co/go/tools/cmd/staticcheck
+  - mkdir -p ~/bin/ && export export PATH="~/bin/:$PATH"
+  - curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh| sh -s -- -b ~/bin
+
+script:
+  - reviewdog -conf=./.reviewdog.yml -reporter=github-pr-review
