@@ -9,4 +9,5 @@ install:
   - curl -sfL https://raw.githubusercontent.com/reviewdog/reviewdog/master/install.sh| sh -s -- -b ~/bin
 
 script:
-  - reviewdog -conf=.reviewdog.yml -reporter=github-pr-check
+  - >-
+    golint ./... | reviewdog -f=golint -reporter=github-pr-review
