@@ -12,7 +12,7 @@ func main() {
 	id, err := strconv.Atoi(idStr)
 	fmt.Println(id)
 	first()
-	// fmt.Println(err)
+	fmt.Println(err)
 }
 func first() error {
 	return errors.New("error")
